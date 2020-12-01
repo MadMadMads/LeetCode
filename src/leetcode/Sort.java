@@ -170,13 +170,41 @@ public class Sort {
             nums[left + n] = help[n];
         }
     }
-    public void heapSort() {
-
+    /**
+     * @description 堆排序
+     * https://www.cnblogs.com/chengxiao/p/6129630.html
+     * @date 2020/12/1 22:43
+     * @return void
+     */
+    public void heapSort(int[] nums) {
+        int length = nums.length;
+        for (int i = length / 2 - 1; i >=0; i --) {
+            adjustHeap(nums,i,length);
+        }
+        for (int i = length -1; i >= 0; i--) {
+            int temp = nums[i];
+            nums[i] = nums[0];
+            nums[0] = temp;
+            adjustHeap(nums,0,i);
+        }
+    }
+    public void adjustHeap(int[] nums,int i,int length) {
+        int temp = nums[i];
+        for (int k = i * 2 + 1;k < length; k = k * 2 + 1) {
+            if (k + 1 < length && nums[k] < nums[k+1]) {
+                k++;
+            }
+            if (temp < nums[k]) {
+                nums[i] = nums[k];
+                i = k;
+            } else {break;}
+        }
+        nums[i] = temp;
     }
     public static void main(String[] args) {
         Sort sort = new Sort();
-        int[] nums = new int[]{3,1};
-        sort.sort(nums,0,nums.length - 1);
+        int[] nums = new int[]{2,1,3,8,6};
+        sort.heapSort(nums);
         System.out.println("");
     }
 }
