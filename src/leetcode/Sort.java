@@ -177,27 +177,25 @@ public class Sort {
      * @return void
      */
     public void heapSort(int[] nums) {
-        int length = nums.length;
-        for (int i = length / 2 - 1; i >=0; i --) {
-            adjustHeap(nums,i,length);
+        for (int i = nums.length / 2 - 1; i >=0; i--) {
+            adjustHeap(nums,i,nums.length);
         }
-        for (int i = length -1; i >= 0; i--) {
-            int temp = nums[i];
-            nums[i] = nums[0];
-            nums[0] = temp;
+        for (int i = nums.length - 1; i >= 0; i--) {
+            int temp = nums[0];
+            nums[0] = nums[i];
+            nums[i] = temp;
             adjustHeap(nums,0,i);
         }
     }
+
     public void adjustHeap(int[] nums,int i,int length) {
         int temp = nums[i];
-        for (int k = i * 2 + 1;k < length; k = k * 2 + 1) {
-            if (k + 1 < length && nums[k] < nums[k+1]) {
-                k++;
-            }
+        for (int k = 2 * i + 1; k < length; k = k * 2 + 1) {
+            if (k + 1 < length && nums[k] < nums[k + 1]) k++;
             if (temp < nums[k]) {
                 nums[i] = nums[k];
                 i = k;
-            } else {break;}
+            } else break;
         }
         nums[i] = temp;
     }
