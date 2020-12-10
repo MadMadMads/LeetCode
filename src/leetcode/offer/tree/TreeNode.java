@@ -9,12 +9,12 @@ import java.util.LinkedList;
  * Modified By:
  */
 public class TreeNode {
-        int val;
+      public int val;
+      public TreeNode right;
+      public TreeNode left;
         TreeNode(int val) {
             this.val = val;
         }
-        TreeNode right;
-        TreeNode left;
         public static TreeNode getTreeNode(Integer[] nums) {
             if (nums.length == 0) {
                 return null;
