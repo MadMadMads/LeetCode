@@ -2,12 +2,12 @@ package leetcode;
 
 /**
  * @author: Luo
- * @description:287. 寻找重复数
+ * @description:287. 缺失的第一个正数
  * @time: 2020/12/11 16:39
- * Modified By:https://leetcode-cn.com/problems/find-the-duplicate-number/
+ * Modified By:https://leetcode-cn.com/problems/first-missing-positive/
  */
-public class findDuplicate {
-    public int findDuplicate(int[] nums) {
+public class firstMissingPositive {
+    public int firstMissingPositive(int[] nums) {
         int n = nums.length;
         for (int i = 0; i < nums.length; i++) {
             if (nums[i] > 0 && nums[i] <= n && nums[nums[i] - 1] != nums[i]) {
