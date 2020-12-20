@@ -28,6 +28,6 @@ public class T153findMin {
     }
 
     public static void main(String[] args) {
-        System.out.println(findMin(new int[]{2,1}));
+        System.out.println(findMin(new int[]{2,2,2,0,1}));
     }
 }
