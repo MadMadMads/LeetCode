@@ -1,5 +1,7 @@
 package leetcode;
 
+import leetcode.offer.tree.TreeNode;
+
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -12,12 +14,6 @@ import java.util.List;
  * Modified By:https://leetcode-cn.com/problems/binary-tree-level-order-traversal/
  */
 public class levelOrder {
-      public class TreeNode {
-          int val;
-          TreeNode left;
-          TreeNode right;
-          TreeNode(int x) { val = x; }
-      }
     public List<List<Integer>> levelOrder(TreeNode root) {
         if (root == null) return new LinkedList<>();
         List<List<Integer>> res = new LinkedList<>();
