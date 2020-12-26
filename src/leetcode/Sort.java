@@ -199,10 +199,25 @@ public class Sort {
         }
         nums[i] = temp;
     }
+
+    public int findRepeatNumber(int[] nums) {
+        int temp;
+        for(int i=0;i<nums.length;i++){
+            while (nums[i]!=i){
+                if(nums[i]==nums[nums[i]]){
+                    return nums[i];
+                }
+                temp=nums[i];
+                nums[i]=nums[temp];
+                nums[temp]=temp;
+            }
+        }
+        return -1;
+    }
     public static void main(String[] args) {
         Sort sort = new Sort();
-        int[] nums = new int[]{2,1,3,8,6};
-        sort.heapSort(nums);
+        int[] nums = new int[]{1,2,1};
+        sort.findRepeatNumber(nums);
         System.out.println("");
     }
 }

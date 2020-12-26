@@ -12,7 +12,10 @@ public class TreeNode {
       public int val;
       public TreeNode right;
       public TreeNode left;
-        TreeNode(int val) {
+      public TreeNode() {
+
+        }
+     public TreeNode(int val) {
             this.val = val;
         }
         public static TreeNode getTreeNode(Integer[] nums) {
