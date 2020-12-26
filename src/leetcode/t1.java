@@ -14,7 +14,6 @@ import java.util.Set;
 public class t1 {
     public static String fun1(int nums) {
         HashMap<Integer, String> hashMap = new HashMap<>();
-        Object
         hashMap.put(0,"");
         hashMap.put(1,"A");
         hashMap.put(2,"B");

@@ -46,5 +46,11 @@ public class TreeNode {
             }
             return head;
         }
+        public static void get(TreeNode root) {
+          if (root == null) return;
+          get(root.left);
+            System.out.print(root.val);
+             get(root.right);
+        }
     }
 
