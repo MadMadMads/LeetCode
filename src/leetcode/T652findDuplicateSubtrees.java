@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * @author: Luo
+ * @author: Luoz
  * @description:652. 寻找重复的子树
  * @time: 2020/12/26 14:55
  * Modified By:https://leetcode-cn.com/problems/find-duplicate-subtrees/
