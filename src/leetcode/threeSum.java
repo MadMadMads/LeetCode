@@ -14,23 +14,21 @@ import java.util.List;
  */
 public class threeSum {
     public static List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
-        int len = nums.length;
-        for (int i = 0; i < len - 2; i++) {
+        List<List<Integer>> res = new ArrayList<>();
+        for (int i = 0; i < nums.length - 2; i++) {
             if (nums[i] > 0) break;
-            int j = i + 1,m = len - 1;
-            if (i > 0 && nums[i-1] == nums[i]) continue;
-            while (j < m) {
-                int sum = nums[i] + nums[j] + nums[m];
+            if (i > 0 && nums[i] == nums[i- 1])  continue;
+            int L = i +1, R = nums.length - 1;
+            while (L < R) {
+                int sum = nums[L] + nums[R] + nums[i];
                 if (sum == 0) {
-                    res.add(Arrays.asList(nums[i],nums[j],nums[m]));
-                    while (nums[j] == nums[j+1] && j < m) j++;
-                    while (nums[m] == nums[m-1] && j < m) m--;
-                    j++;m--;
-                } else if (sum > 0) m--;
-                else j++;
-
+                    res.add(Arrays.asList(nums[i],nums[L],nums[R]));
+                    while (L < R && nums[L + 1] == nums[L]) L++;
+                    while (L < R && nums[R - 1] == nums[R]) R--;
+                    L++;R--;
+                } else if (sum < 0) L++;
+                else {R--;}
             }
         }
         return res;
