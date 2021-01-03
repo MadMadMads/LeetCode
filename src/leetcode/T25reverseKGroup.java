@@ -10,10 +10,9 @@ import java.util.List;
  */
 public class T25reverseKGroup {
     public ListNode reverse(ListNode a,ListNode b) {
-        ListNode pre, cur, next;
-        cur = next = a;pre = null;
+        ListNode pre = null,cur = a;
         while (cur != b) {
-            next = cur.next;
+            ListNode next = cur.next;
             cur.next = pre;
             pre = cur;
             cur = next;
@@ -21,10 +20,10 @@ public class T25reverseKGroup {
         return pre;
     }
     public ListNode reverseKGroup(ListNode head, int k) {
-        if (head == null) return null;
-        ListNode a = head, b = head;
-        for (int i = 0; i <k; i++) {
-            if (b == null) return head;
+        ListNode a = head,b = head;
+        if (head == null || head.next == null) return head;
+        for (int i = 0; i < k;i++) {
+            if (b == null) return a;
             b = b.next;
         }
         ListNode newHead = reverse(a,b);
