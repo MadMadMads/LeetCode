@@ -8,15 +8,13 @@ package leetcode;
  */
 public class climbStairs {
     public int climbStairs(int n) {
-        int first = 1;
-        int second = 2;
-        int res = 1;
-        if (n ==2) return 2;
+        int[] temp = new int[]{1,2};
+        if  (n >0 &&n <= 2) return temp[n - 1];
         for (int i = 3; i <= n; i++) {
-            res = first + second;
-            first = second;
-            second = res;
+            int j = temp[1];
+            temp[1] = temp[0] + temp[1];
+            temp[0] = j;
         }
-        return res;
+        return temp[1];
     }
 }
