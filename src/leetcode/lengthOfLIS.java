@@ -10,17 +10,18 @@ import java.util.Arrays;
  */
 public class lengthOfLIS {
     public int lengthOfLIS(int[] nums) {
-        int[] dp = new int[nums.length];
+        if (nums.length == 0) return 0;
+       int[] dp = new int[nums.length];
+       int res = 1;
         Arrays.fill(dp,1);
-        int res = 1;
-        for (int i = 1; i < nums.length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (nums[j] >= nums[i]) continue;
-                dp[i] = Math.max(dp[j] + 1,dp[i]);
-                res = res < dp[i] ? dp[i] : res;
-            }
-        }
-        return res;
+       for (int i = 1;i < nums.length; i++) {
+           for (int j = 0; j < i; j++) {
+               if (nums[i] <= nums[j]) continue;
+               dp[i] = Math.max(dp[j] + 1,dp[i]);
+           }
+           res = Math.max(res,dp[i]);
+       }
+       return res;
     }
 
     public static void main(String[] args) {
