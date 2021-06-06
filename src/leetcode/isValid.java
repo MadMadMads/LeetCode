@@ -16,17 +16,17 @@ public class isValid {
         put(')','(');
     }};
     public boolean isValid(String s) {
-        Stack<Character> stack = new Stack<Character>();
-        for (int i = 0; i < s.length(); i++) {
-            Character c = s.substring(i,i+1).charAt(0);
-            if (c == '[' || c == '{' || c=='(') {
-                stack.push(c);
+        Stack<Character> res = new Stack<>();
+        char[] chars = s.toCharArray();
+        for (char c : chars) {
+            if (mappings.containsKey(c)) {
+                if (res.isEmpty() || !res.peek().equals(mappings.get(c))) return false;
+                else res.pop();
             } else {
-                if (!stack.isEmpty() && mappings.get(c).equals(stack.peek())) {stack.pop();}
-                else return false;
+                res.push(c);
             }
         }
-        return stack.isEmpty();
+        return res.isEmpty();
     }
     public static void main(String[] args) {
         isValid isValid = new isValid();

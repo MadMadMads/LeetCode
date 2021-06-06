@@ -2,6 +2,7 @@ package leetcode;
 
 import leetcode.offer.tree.TreeNode;
 
+import java.awt.font.TextMeasurer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,31 +10,29 @@ import java.util.List;
 /**
  * @author: Luo
  * @description:蛇形遍历
- * @time: 2021/1/3 13:29
+ * @time: 2021年02月21日
  * Modified By:https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/
  */
 public class T103zigzagLevelOrder {
     public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
-        if (root == null) return null;
-        LinkedList<TreeNode> list = new LinkedList<>();
-        list.add(root);
-        boolean flag = true;
-        while (!list.isEmpty()) {
-            int size = list.size();
-            LinkedList<Integer> temp = new LinkedList<>();
+        if (root == null) return new ArrayList<>();
+        LinkedList<TreeNode> temp = new LinkedList<>();
+        temp.add(root);
+        while (!temp.isEmpty()) {
+            LinkedList<Integer> integerList = new LinkedList<>();
+            int size = temp.size();
             for (int i = 0; i < size; i++) {
-                TreeNode node = list.pollFirst();
-                if (flag) {
-                    temp.addLast(node.val);
+                TreeNode node = temp.pollFirst();
+                if (res.size() % 2 == 0) {
+                    integerList.addLast(node.val);
                 } else {
-                    temp.addFirst(node.val);
+                    integerList.addFirst(node.val);
                 }
-                if (node.left != null) list.add(node.left);
-                if (node.right != null) list.add(node.right);
+                if (node.left != null) temp.add(node.left);
+                if (node.right != null) temp.add(node.right);
             }
-            flag =!flag;
-            res.add(temp);
+            res.add(integerList);
         }
         return res;
     }

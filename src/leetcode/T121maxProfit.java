@@ -2,20 +2,19 @@ package leetcode;
 
 /**
  * @author: Luo
- * @description:122. 买卖股票的最佳时机 II
+ * @description:122. 买卖股票的最佳时机 1
  * @time: 2021/1/2 20:28
  * Modified By:https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
  */
 public class T121maxProfit {
     /** DP **/
     public int maxProfit(int[] prices) {
-        int dp_i_0 = 0,dp_i_1 = Integer.MIN_VALUE;
-        for (int i = 0; i < prices.length; i++) {
-            dp_i_1 = Math.max(dp_i_1,dp_i_0 - prices[i]);
-            dp_i_0 = Math.max(dp_i_0,dp_i_1 + prices[i]);
-
+        int dp_0 = 0,dp_1 = Integer.MIN_VALUE;
+        for (int n : prices) {
+            dp_0 = Math.max(dp_0,dp_1 + n);
+            dp_1 = Math.max(dp_1,-n);
         }
-        return dp_i_0;
+        return dp_0;
     }
     /** 贪心，只要涨幅了就每天都卖 **/
     public int maxProfit1(int[] prices) {

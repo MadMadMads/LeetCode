@@ -1,6 +1,7 @@
 package leetcode;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * @author: Luo
@@ -9,7 +10,7 @@ import java.util.HashMap;
  * Modified By:https://leetcode-cn.com/problems/lru-cache/
  */
 public class T146LRUCache {
-    class node {
+    /*class node {
         int key;
         int val;
         node prev;
@@ -95,14 +96,39 @@ public class T146LRUCache {
             deleteKey(key);
             addRecnetly(key,value);
         }
+    }*/
+    LinkedHashMap linkedHashMap;
+    int size;
+
+    public T146LRUCache(int capacity) {
+        linkedHashMap = new LinkedHashMap<>(capacity);
+        size = capacity;
     }
 
+    public int get(int key) {
+        if (!linkedHashMap.containsKey(key)) return -1;
+        int value = (int) linkedHashMap.get(key);
+        linkedHashMap.remove(key);
+        linkedHashMap.put(key,value);
+        return value;
+    }
+
+    public void put(int key, int value) {
+        if (linkedHashMap.containsKey(key)) {
+            linkedHashMap.remove(key);
+            linkedHashMap.put(key,value);
+        }else if (linkedHashMap.size() > size) {
+            int key1 = (int) linkedHashMap.keySet().iterator().next();
+            linkedHashMap.remove(key1);
+        }
+        linkedHashMap.put(key,value);
+    }
     public static void main(String[] args) {
         T146LRUCache t146LRUCache = new T146LRUCache(2);
         t146LRUCache.put(1,1);
         t146LRUCache.put(2,2);
         t146LRUCache.put(3,3);
         t146LRUCache.put(4,4);
-        System.out.println(t146LRUCache.get(1));
+        System.out.println(t146LRUCache.get(3));
     }
 }

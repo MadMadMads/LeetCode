@@ -30,8 +30,26 @@ public class lengthOfLongestSubstring {
         return ans;
     }
 
-    public static void main(String[] args) {
+    public static int lengthOfLongestSubstring1(String s) {
+        Set<Character> res = new HashSet<>();
+        char[] chars = s.toCharArray();
+        int length = 0;
+        int i = 0,j = 0;
+        while (i < chars.length && j < chars.length) {
+            if (res.contains(chars[j])) {
+                res.remove(chars[i]);
+                i++;
+            } else {
+                res.add(chars[j]);
+                j++;
+                length = length > res.size() ? length : res.size();
+            }
+        }
+        return length;
+    }
 
-        System.out.println(lengthOfLongestSubstring("pwwkew"));
+        public static void main(String[] args) {
+
+        System.out.println(lengthOfLongestSubstring1("pwwkew"));
     }
 }

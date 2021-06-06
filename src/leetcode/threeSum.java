@@ -7,14 +7,14 @@ import java.util.List;
 
 /**
  * @author: Luo
- * @description:三数之和
- * 二刷2020年6月12日
+ * @description:三数之和 二刷2020年6月12日
+ * 三刷2021年02月20日
  * @time: 2020/4/29 21:34
  * Modified By:https://leetcode-cn.com/problems/3sum/
  */
 public class threeSum {
     public static List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
+       /* Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
         for (int i = 0; i < nums.length - 2; i++) {
             if (nums[i] > 0) break;
@@ -29,6 +29,26 @@ public class threeSum {
                     L++;R--;
                 } else if (sum < 0) L++;
                 else {R--;}
+            }
+        }*/
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 2; i++) {
+            int a = i + 1, b = nums.length - 1;
+            if (nums[i] > 0) break;
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            while (a < b) {
+                int sum = nums[i] + nums[a] + nums[b];
+                if (sum == 0) {
+                    res.add(Arrays.asList(nums[i], nums[a], nums[b]));
+                    while (a < b && nums[a] == nums[a + 1]) a++;
+                    while (a < b && nums[b] == nums[b - 1]) b--;
+                    a++; b--;
+                } else if(sum > 0) {
+                    b--;
+                } else {
+                    a++;
+                }
             }
         }
         return res;

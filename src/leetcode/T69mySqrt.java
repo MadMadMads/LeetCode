@@ -26,8 +26,9 @@ public class T69mySqrt {
         return left;
     }
 
+
     public static void main(String[] args) {
-        System.out.println(mySqrt(5));
+        System.out.println(mySqrt(2147395599));
     }
 }
 

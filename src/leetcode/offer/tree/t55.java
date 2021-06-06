@@ -7,21 +7,24 @@ package leetcode.offer.tree;
  * Modified By:https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/
  */
 public class t55 {
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
+
     int max = 0;
     public int maxDepth(TreeNode root) {
-        dfs(root,1);
+        getMax(root);
         return max;
     }
-    public void dfs(TreeNode root,int i) {
-        if (root == null) return ;
-        max = i > max ? i : max;
-        dfs(root.left, i + 1);
-        dfs(root.right, i + 1);
+    public int getMax(TreeNode root) {
+        if (root == null) return 0;
+        int left = getMax(root.left);
+        int right = getMax(root.right);
+        int depth = Math.max(left,right) + 1;
+        max = Math.max(max,depth);
+        return depth;
+    }
+
+    public static void main(String[] args) {
+        t55 t55 = new t55();
+        TreeNode node = leetcode.offer.tree.TreeNode.getTreeNode(new Integer[]{3,9,20,null,null,15,7});
+        System.out.println(t55.maxDepth(node));
     }
 }

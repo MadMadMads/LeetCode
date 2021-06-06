@@ -1,5 +1,6 @@
 package leetcode;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -23,6 +24,18 @@ public class T25reverseKGroup {
         ListNode a = head,b = head;
         if (head == null || head.next == null) return head;
         for (int i = 0; i < k;i++) {
+            if (b == null) return a;
+            b = b.next;
+        }
+        ListNode newHead = reverse(a,b);
+        a.next = reverseKGroup(b,k);
+        return newHead;
+    }
+
+    public ListNode reverseKGroup1(ListNode head, int k) {
+        if (head == null || head.next == null) return head;
+        ListNode a = head,b = head;
+        for (int i = 0; i < k; i++) {
             if (b == null) return a;
             b = b.next;
         }

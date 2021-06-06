@@ -10,7 +10,7 @@ import java.lang.annotation.ElementType;
  */
 public class t55_2 {
 
-    public boolean isBalanced(TreeNode root) {
+    /*public boolean isBalanced(TreeNode root) {
         if (root == null) return true;
         if (Math.abs(depth(root.right) - depth(root.left)) <= 1) {
             return isBalanced(root.left) && isBalanced(root.right);
@@ -19,5 +19,13 @@ public class t55_2 {
     public int depth(TreeNode root) {
         if (root == null ) return 0;
         return Math.max(depth(root.left),depth(root.right)) + 1;
+    }*/
+    public boolean isBalanced(TreeNode root) {
+        if (root == null) return true;
+        return Math.abs(getDepth(root.right) - getDepth(root.left)) < 2 && isBalanced(root.left) && isBalanced(root.right);
+    }
+    public int getDepth(TreeNode root) {
+        if (root == null) return 0;
+        return Math.max(getDepth(root.left),getDepth(root.right)) + 1;
     }
 }
