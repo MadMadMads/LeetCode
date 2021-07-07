@@ -97,7 +97,8 @@ public class T146LRUCache {
             addRecnetly(key,value);
         }
     }*/
-    LinkedHashMap linkedHashMap;
+
+    /*LinkedHashMap linkedHashMap;
     int size;
 
     public T146LRUCache(int capacity) {
@@ -122,13 +123,42 @@ public class T146LRUCache {
             linkedHashMap.remove(key1);
         }
         linkedHashMap.put(key,value);
+    }*/
+
+    LinkedHashMap linkedHashMap;
+    int size;
+
+    public T146LRUCache(int capacity) {
+        linkedHashMap = new LinkedHashMap<>(capacity);
+        size = capacity;
     }
+
+    public int get(int key) {
+        if (linkedHashMap.containsKey(key)) {
+            Object o = linkedHashMap.get(key);
+            linkedHashMap.remove(key);
+            linkedHashMap.put(key, o);
+            return (int) o;
+        }
+        return -1;
+    }
+
+    public void put(int key, int value) {
+        linkedHashMap.remove(key);
+        if (linkedHashMap.size() >= size) {
+            Object o = linkedHashMap.keySet().stream().findFirst().get();
+            linkedHashMap.remove((int)o);
+        }
+        linkedHashMap.put(key, value);
+    }
+
+
     public static void main(String[] args) {
         T146LRUCache t146LRUCache = new T146LRUCache(2);
-        t146LRUCache.put(1,1);
-        t146LRUCache.put(2,2);
-        t146LRUCache.put(3,3);
-        t146LRUCache.put(4,4);
+        t146LRUCache.put(1, 1);
+        t146LRUCache.put(2, 2);
+        t146LRUCache.put(3, 3);
+        t146LRUCache.put(4, 4);
         System.out.println(t146LRUCache.get(3));
     }
 }

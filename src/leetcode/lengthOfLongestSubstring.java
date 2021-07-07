@@ -1,6 +1,7 @@
 package leetcode;
 
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,35 +22,36 @@ public class lengthOfLongestSubstring {
             if (!res.contains(chars[j])) {
                 res.add(chars[j]);
                 j++;
-                ans = Math.max(res.size(),ans);}
-            else {
+                ans = Math.max(res.size(), ans);
+            } else {
                 res.remove(chars[i]);
-                i ++;
+                i++;
             }
         }
         return ans;
     }
 
     public static int lengthOfLongestSubstring1(String s) {
-        Set<Character> res = new HashSet<>();
+        HashMap<Character, Integer> res = new HashMap();
         char[] chars = s.toCharArray();
-        int length = 0;
-        int i = 0,j = 0;
-        while (i < chars.length && j < chars.length) {
-            if (res.contains(chars[j])) {
-                res.remove(chars[i]);
-                i++;
-            } else {
-                res.add(chars[j]);
-                j++;
-                length = length > res.size() ? length : res.size();
+        int max = Integer.MIN_VALUE;
+        int left = 0, right = 0;
+        while (right < chars.length) {
+            char c = chars[right];
+            res.put(c, res.getOrDefault(c, 0) + 1);
+            right++;
+            while (res.get(c) > 1) {
+                char c1 = chars[left];
+                res.put(c1, res.get(c) - 1);
+                if (res.get(c1) == 0) res.remove(c1);
+                left++;
             }
+            if (right - left > max) max = right - left;
         }
-        return length;
+        return max;
     }
 
-        public static void main(String[] args) {
-
+    public static void main(String[] args) {
         System.out.println(lengthOfLongestSubstring1("pwwkew"));
     }
 }

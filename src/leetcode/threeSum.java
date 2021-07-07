@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class threeSum {
     public static List<List<Integer>> threeSum(int[] nums) {
-       /* Arrays.sort(nums);
+       Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
         for (int i = 0; i < nums.length - 2; i++) {
             if (nums[i] > 0) break;
@@ -30,24 +30,26 @@ public class threeSum {
                 } else if (sum < 0) L++;
                 else {R--;}
             }
-        }*/
-        List<List<Integer>> res = new ArrayList<>();
+        }
+        return res;
+    }
+    public static List<List<Integer>> threeSum1(int[] nums) {
+        ArrayList<List<Integer>> res = new ArrayList<>();
         Arrays.sort(nums);
-        for (int i = 0; i < nums.length - 2; i++) {
-            int a = i + 1, b = nums.length - 1;
-            if (nums[i] > 0) break;
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
-            while (a < b) {
-                int sum = nums[i] + nums[a] + nums[b];
+        for (int i = 0;i < nums.length - 2; i++) {
+            while (i > 0 && i < nums.length && nums[i] == nums[i - 1]) i++;
+            int l = i + 1, r = nums.length - 1;
+            while (l < r) {
+                int sum = nums[i] + nums[l] + nums[r];
                 if (sum == 0) {
-                    res.add(Arrays.asList(nums[i], nums[a], nums[b]));
-                    while (a < b && nums[a] == nums[a + 1]) a++;
-                    while (a < b && nums[b] == nums[b - 1]) b--;
-                    a++; b--;
-                } else if(sum > 0) {
-                    b--;
-                } else {
-                    a++;
+                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                    while (l < r && nums[l] == nums[l + 1]) l++;
+                    while (l < r && nums[r] == nums[r - 1]) r--;
+                    l++;r--;
+                }
+                else if (sum < 0) l++;
+                else {
+                    r--;
                 }
             }
         }
@@ -55,7 +57,8 @@ public class threeSum {
     }
 
     public static void main(String[] args) {
-        int[] nums = new int[]{-1, 0, 1, 2, -1, -4};
-        System.out.println(threeSum(nums));
+//        int[] nums = new int[]{-1, 0, 1, 2, -1, -4};
+        int[] nums = new int[]{0,0,0,0};
+        System.out.println(threeSum1(nums));
     }
 }
